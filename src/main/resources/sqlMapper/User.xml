@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.zhi.dao.UserDao"><!--namespace需与类名一致-->
+    <resultMap id="userMap" type="User">
+        <id property="id" column="id"/>
+        <result property="userName" column="userName"/>
+        <result property="age" column="userAge"/>
+        <result property="userAddress" column="userAddress"/>
+    </resultMap>
+
+    <!--id名与方法名一致方便映射-->
+    <select id="selectUserById" parameterType="int" resultMap="userMap">
+        SELECT * from USER WHERE id = #{id}
+    </select>
+
+    <insert id="insertUser" parameterType="User" keyColumn="id">
+        INSERT INTO USER  (userName, userAge, userAddress)  VALUES (#{userName},#{age},#{userAddress})
+    </insert>
+</mapper>
